@@ -55,7 +55,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(
-            name = "product_id",
+            name = "price_id",
             nullable = false,
             foreignKey = @ForeignKey(name = "FK_PRODUCT_PRICE_PRODUCT_ID_RELATION")
     )
@@ -63,7 +63,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(
-            name = "product_id",
+            name = "discount_id",
             nullable = false,
             foreignKey = @ForeignKey(name = "FK_PRODUCT_DISCOUNT_PRODUCT_ID_RELATION")
     )
