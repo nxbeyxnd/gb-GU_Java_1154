@@ -1,6 +1,6 @@
 package ru.gb.mall.inventory.controller;
 
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.mall.inventory.dto.AuthRequestDto;
 import ru.gb.mall.inventory.entity.User;
@@ -18,14 +18,12 @@ public class AuthUserController {
     }
 
     @PostMapping("/register")
-    @ResponseStatus(HttpStatus.OK)
-    public User saveNewUser(@RequestBody AuthRequestDto authRequestDto) {
-        return authService.saveNewUser(authRequestDto);
+    public ResponseEntity<User> saveNewUser(@RequestBody AuthRequestDto authRequestDto) {
+        return ResponseEntity.ok(authService.saveNewUser(authRequestDto));
     }
 
     @PostMapping("/login")
-    @ResponseStatus(HttpStatus.OK)
-    public Optional<User> findUserByLoginAndPass(@RequestBody AuthRequestDto authRequestDto){
-        return authService.findUserByLoginAndPassword(authRequestDto);
+    public ResponseEntity<Optional<User>> findUserByLoginAndPass(@RequestBody AuthRequestDto authRequestDto){
+        return ResponseEntity.ok(authService.findUserByLoginAndPassword(authRequestDto));
     }
 }
