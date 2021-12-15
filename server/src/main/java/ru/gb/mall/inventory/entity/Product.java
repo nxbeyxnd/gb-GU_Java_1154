@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.util.List;
 
@@ -20,11 +21,12 @@ import java.util.List;
 @Data
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_idGenerator")
+    @SequenceGenerator(name = "seq_idGenerator", sequenceName = "seq_productId", allocationSize = 1)
     @Column(name = "ID")
     private long id;
 
-    @Column(name = "NAME", nullable = false, unique = true, length = 50)
+    @Column(name = "NAME", nullable = false, unique = true, columnDefinition = "VARCHAR", length = 50)
     private String name;
 
     @ManyToMany

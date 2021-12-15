@@ -3,12 +3,14 @@ server:
     context-path: /api/v1
 
 spring:
-  datasource:
-    username: <changeit>
-    password: <changeit>
-    url: <changeit>
-    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    show-sql: true
     hibernate:
       ddl-auto: validate
+    properties:
+      dialect: org.hibernate.dialect.postgres
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password:
