@@ -45,8 +45,8 @@ public class ProductService {
     @Transactional
     public Product addNewProduct(ProductRequestDto productRequestDto) {
         Optional<Product> productPresent = productRepository.findByName(productRequestDto.getName());
-        if(productPresent.isPresent()){
-            throw new DuplicatedValueException(String.format("Products with name (%s) already exists",productRequestDto.getName()));
+        if (productPresent.isPresent()) {
+            throw new DuplicatedValueException(String.format("Products with name (%s) already exists", productRequestDto.getName()));
         }
         Product product = new Product();
         product.setName(productRequestDto.getName());
@@ -56,25 +56,39 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Long deleteProductById(Long id){
-        try{
+    public Long deleteProductById(Long id) {
+        try {
             productRepository.findById(id).orElseThrow();
             productRepository.deleteById(id);
             return id;
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             throw new EntityNotFoundException("Product entity not found by id: " + id, e);
         }
     }
 
     @Transactional
-    public Product updateProductById(Long id, ProductUpdateRequestDto productUpdateRequestDto){
-        try{
+    public Product updateProductById(Long id, ProductUpdateRequestDto productUpdateRequestDto) {
+        try {
             Product product = productRepository.findById(id).orElseThrow();
             product.setCategory(productCategoryService.saveOrUpdate(productUpdateRequestDto.getCategory()));
             product.setPrice(productPriceService.saveOrUpdate(product.getId(), productUpdateRequestDto.getPrice()));
             product.setDiscount(productDiscountService.saveOrUpdate(product.getId(), productUpdateRequestDto.getDiscount()));
             return productRepository.save(product);
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
+            throw new EntityNotFoundException("Product entity not found by id: " + id, e);
+        }
+    }
+
+    @Transactional
+    public Long deleteCategoryById(Long id) {
+        try {
+            for (Product p : productRepository.findAllByCategory(productCategoryService.findById(id)).orElseThrow()){
+                p.getCategory().remove(productCategoryService.findById(id));
+                productRepository.save(p);
+            }
+            productCategoryService.deleteById(id);
+            return id;
+        } catch (NoSuchElementException e) {
             throw new EntityNotFoundException("Product entity not found by id: " + id, e);
         }
     }

@@ -19,7 +19,7 @@ public class ProductController {
 
     private final ProductService productService;
 
-    public ProductController(ProductService productService, ProductPriceService productPriceService, ProductDiscountService productDiscountService, ProductCategoryService productCategoryService) {
+    public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
@@ -38,13 +38,18 @@ public class ProductController {
         return ResponseEntity.ok(productService.addNewProduct(productRequestDto));
     }
 
-    @DeleteMapping("{id}")
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProductById(@PathVariable("id") long id, @RequestBody ProductUpdateRequestDto productUpdateRequestDto){
+        return ResponseEntity.ok(productService.updateProductById(id, productUpdateRequestDto));
+    }
+
+    @DeleteMapping("/{id}")
     public ResponseEntity<Long> deleteProductById(@PathVariable("id") Long id){
         return new ResponseEntity<>(productService.deleteProductById(id), HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<Product> updateProductById(@PathVariable("id") long id, @RequestBody ProductUpdateRequestDto productUpdateRequestDto){
-        return ResponseEntity.ok(productService.updateProductById(id, productUpdateRequestDto));
+    @DeleteMapping("/category/{id}")
+    public ResponseEntity<Long> deleteCategoryById(@PathVariable ("id") Long id){
+        return new ResponseEntity<>(productService.deleteCategoryById(id), HttpStatus.NO_CONTENT);
     }
 }
