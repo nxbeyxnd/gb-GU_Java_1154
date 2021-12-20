@@ -6,11 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.gb.mall.inventory.dto.ProductRequestDto;
 import ru.gb.mall.inventory.dto.ProductUpdateRequestDto;
 import ru.gb.mall.inventory.entity.Product;
-import ru.gb.mall.inventory.service.ProductCategoryService;
-import ru.gb.mall.inventory.service.ProductDiscountService;
-import ru.gb.mall.inventory.service.ProductPriceService;
 import ru.gb.mall.inventory.service.ProductService;
-
 import java.util.List;
 
 @RestController
