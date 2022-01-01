@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import ru.gb.mall.inventory.exception.DuplicatedValueException;
 import ru.gb.mall.inventory.exception.EntityNotFoundException;
+import ru.gb.mall.inventory.mail.MailSenderException;
 
 import javax.xml.crypto.Data;
 import java.sql.Timestamp;
@@ -33,6 +34,15 @@ public class GlobalRestExceptionHandler extends ResponseEntityExceptionHandler {
                         ex.getMessage(),
                         new Date()),
                 HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({MailSenderException.class})
+    public ResponseEntity<ApiError> handleMailException(MailSenderException ex) {
+        return new ResponseEntity<>(new ApiError(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                ex.getMessage(),
+                new Date()
+        ), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

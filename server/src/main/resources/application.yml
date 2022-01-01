@@ -5,7 +5,7 @@ server:
 spring:
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
     properties:
       dialect: org.hibernate.dialect.postgres
 
@@ -13,4 +13,16 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
+    password: password
+
+  mail:
+    host: smtp.google.com
+    port: 587
+    username: unblocksteam@gmail.com
     password:
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

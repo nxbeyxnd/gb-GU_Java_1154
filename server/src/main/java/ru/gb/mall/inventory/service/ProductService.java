@@ -42,6 +42,15 @@ public class ProductService {
         }
     }
 
+    public Product findByName(ProductRequestDto productRequestDto){
+        Optional<Product> productPresent = productRepository.findByName(productRequestDto.getName());
+        if (productPresent.isPresent()) {
+            return productPresent.get();
+        }
+        throw new DuplicatedValueException(String.format("Products with name (%s) already exists", productRequestDto.getName()));
+
+    }
+
     @Transactional
     public Product addNewProduct(ProductRequestDto productRequestDto) {
         Optional<Product> productPresent = productRepository.findByName(productRequestDto.getName());
