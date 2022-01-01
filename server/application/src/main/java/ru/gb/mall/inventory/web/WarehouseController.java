@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.gb.mall.inventory.dto.WarehouseDto;
 import ru.gb.mall.inventory.dto.WarehouseKeeperDto;
 import ru.gb.mall.inventory.dto.WriteOffDto;
-import ru.gb.mall.inventory.entity.Product;
 import ru.gb.mall.inventory.entity.Warehouse;
 import ru.gb.mall.inventory.entity.WarehouseItem;
 import ru.gb.mall.inventory.service.WarehouseItemService;

@@ -4,7 +4,6 @@ package ru.gb.mall.inventory.dto;
 */
 
 import lombok.Data;
-import ru.gb.mall.inventory.entity.Warehouse;
 import ru.gb.mall.inventory.entity.WarehouseKeeper;
 
 @Data

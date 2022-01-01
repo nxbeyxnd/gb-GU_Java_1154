@@ -9,8 +9,6 @@ import ru.gb.mall.inventory.exception.DuplicatedValueException;
 import ru.gb.mall.inventory.exception.EntityNotFoundException;
 import ru.gb.mall.inventory.mail.MailSenderException;
 
-import javax.xml.crypto.Data;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @RestControllerAdvice

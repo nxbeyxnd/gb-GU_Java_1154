@@ -5,13 +5,11 @@ package ru.gb.mall.inventory.service;
 
 import org.springframework.stereotype.Service;
 import ru.gb.mall.inventory.dto.WarehouseKeeperDto;
-import ru.gb.mall.inventory.entity.Warehouse;
 import ru.gb.mall.inventory.entity.WarehouseKeeper;
 import ru.gb.mall.inventory.exception.DuplicatedValueException;
 import ru.gb.mall.inventory.exception.EntityNotFoundException;
 import ru.gb.mall.inventory.repository.WarehouseKeeperRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.StreamSupport;

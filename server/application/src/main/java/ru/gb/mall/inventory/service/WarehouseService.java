@@ -3,10 +3,7 @@ package ru.gb.mall.inventory.service;
 26.12.2021: Alexey created this file inside the package: ru.gb.mall.inventory.service 
 */
 
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import ru.gb.mall.inventory.dto.ProductRequestDto;
 import ru.gb.mall.inventory.dto.WarehouseDto;
 import ru.gb.mall.inventory.dto.WarehouseKeeperDto;
 import ru.gb.mall.inventory.dto.WriteOffDto;
@@ -21,7 +18,6 @@ import ru.gb.mall.inventory.repository.WarehouseRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.StreamSupport;
 
 @Service
