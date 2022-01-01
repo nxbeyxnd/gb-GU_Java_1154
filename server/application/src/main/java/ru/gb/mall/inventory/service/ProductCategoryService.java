@@ -7,7 +7,6 @@ import ru.gb.mall.inventory.repository.ProductCategoryRepository;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
